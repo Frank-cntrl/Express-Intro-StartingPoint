@@ -4,19 +4,20 @@ const { Task } = require("../dummy-database");
 
 // GET all tasks
 router.get("/", (req, res) => {
-  // Replace this with your code!
-  res.status(501).send("Not implemented");
-});
-
-// GET a single task by id
-router.get("/", (req, res) => {
   const task = Task.findAll();
   res.json(task);
 });
 
+// GET a single task by id
+
 // Patch a task by id
 
 // Delete a task by id
+router.delete("/:id", (req, res) => {
+  const id = Number(req.params.id);
+  const removeTask = Task.delete(id);
+  res.status(200).json(removeTask);
+});
 
 // Create a new task
 router.post("/", (req, res) => {
